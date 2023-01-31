@@ -28,7 +28,7 @@ export default function DarkModeSwitch() {
                 <Button
                   as="a"
                   variant="ghost"
-                  aria-label="Home"
+                  aria-label="Ideas"
                   my={5}
                   w="100%"
                 >

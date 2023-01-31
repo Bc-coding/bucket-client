@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 // import "./app.css";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "./actions";
 
-import NavBar from "./header/NavBar";
-import Landing from "./Landing";
+import NavBar from "./components/header/NavBar";
+import Landing from "./pages/Landing";
 
 const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;

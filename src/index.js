@@ -13,17 +13,17 @@ import { createStore, applyMiddleware } from "redux";
 // import "./index.scss";
 import reduxThunk from "redux-thunk";
 
-import App from "./components/App";
+import App from "./App";
 import reducers from "./reducers";
 
-// 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/react";
 
-import axios from "axios";
-window.axios = axios;
+// import axios from "axios";
+// window.axios = axios;
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/",
+  // uri: "http://localhost:4000/",
+  uri: "https://bucket-server-production.up.railway.app/",
 });
 
 const authLink = setContext((body, { headers }) => {
