@@ -1,12 +1,12 @@
 const navItems = [
   {
     id: 1,
-    name: "Ideas 💡 ",
+    name: "Home 🏡 ",
     href: "/",
   },
   {
     id: 2,
-    name: "Bucket list 🗑 ",
+    name: "Create my list ✏ ",
     href: "/bucket-list",
   },
   // {

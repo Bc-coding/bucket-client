@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
-import NavBar from "./components/header/NavBar";
 import Landing from "./pages/Landing";
 
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -17,19 +16,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <div>
-            {/* <Header /> */}
-            <NavBar />
-            <div style={{ marginTop: "100px" }}>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/surveys" component={Dashboard} />
-              <Route path="/surveys/new" component={SurveyNew} />
-            </div>
-          </div>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/surveys" component={Dashboard} />
+        <Route path="/surveys/new" component={SurveyNew} />
+      </BrowserRouter>
     );
   }
 }

@@ -3,9 +3,9 @@ import { Box, Text } from "@chakra-ui/react";
 
 export default function Logo(props) {
   return (
-    <Box {...props}>
+    <Box {...props} marginTop="1.5rem" paddingLeft="2rem">
       <Text fontSize="lg" fontWeight="bold">
-        Logo
+        Bucket List 📓
       </Text>
     </Box>
   );
