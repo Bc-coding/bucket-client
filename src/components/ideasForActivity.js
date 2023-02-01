@@ -38,59 +38,64 @@ const buttons = [
 ];
 
 const IdeasForActivity = () => {
-  const { loading, error, data } = useQuery(IDEAS);
+  const { loading, error, data, refetch } = useQuery(IDEAS);
 
-  const [getActivityByType, { loading: activityLoading, data: activityData }] =
-    useLazyQuery(IDEA_BY_TYPE);
-
-  const [idea, setIdea] = useState(false);
-  const [idea1, setIdea1] = useState(false);
-
-  useEffect(() => {
-    setIdea(data?.activity?.activity);
+  const [
+    getActivityByType,
+    {
+      loading: activityByTypeLoading,
+      error: activityByTypeError,
+      data: activityByTypeData,
+    },
+  ] = useLazyQuery(IDEA_BY_TYPE, {
+    fetchPolicy: "network-only",
   });
 
-  useEffect(() => {
-    console.log(activityData);
-    setIdea1(activityData?.activityByType.activity);
-  }, [activityData]);
-
   return (
-    <QueryResult error={error} loading={loading} data={data}>
-      <VStack spacing="24px">
-        <Box>
-          {buttons.map(button => {
-            return (
-              <Button
-                colorScheme="teal"
-                marginRight="20px"
-                size="sm"
-                onClick={() => {
-                  getActivityByType({
-                    variables: {
-                      input: {
-                        type: button.arg,
-                      },
-                    },
-                  });
+    <VStack spacing="24px">
+      <Box>
+        <QueryResult error={error} loading={loading} data={data}>
+          <span>💡</span>
+          <span style={{ fontWeight: "bold" }}>
+            {" "}
+            {data && data?.activity?.activity}
+          </span>
+        </QueryResult>
+      </Box>
+      <Button onClick={() => refetch()}>Refetch new idea!</Button>
 
-                  // if (activityData) {
-                  //   console.log(activityData);
-                  //   setIdea("hi");
-                  // }
-                }}
-              >
-                {button.title}
-              </Button>
-            );
-          })}
-        </Box>
-        <Box>
-          {idea} <span>💡</span>
-        </Box>
-        <Box>{idea1}</Box>
-      </VStack>
-    </QueryResult>
+      <Box>
+        {buttons.map(button => {
+          return (
+            <Button
+              colorScheme="teal"
+              marginRight="20px"
+              size="sm"
+              onClick={() => {
+                getActivityByType({
+                  variables: {
+                    input: {
+                      type: button.arg,
+                    },
+                  },
+                });
+              }}
+            >
+              {button.title}
+            </Button>
+          );
+        })}
+      </Box>
+      <Box>
+        <QueryResult
+          error={activityByTypeError}
+          loading={activityByTypeLoading}
+          data={activityByTypeData}
+        >
+          {activityByTypeData?.activityByType.activity}
+        </QueryResult>
+      </Box>
+    </VStack>
   );
 };
 
