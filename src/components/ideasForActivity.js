@@ -35,6 +35,12 @@ const buttons = [
   { title: "Education", arg: "education" },
   { title: "Recreational", arg: "recreational" },
   { title: "Social", arg: "social" },
+  { title: "DIY", arg: "diy" },
+  { title: "Charity", arg: "charity" },
+  { title: "Cooking", arg: "cooking" },
+  { title: "Relaxation", arg: "relaxation" },
+  { title: "Music", arg: "music" },
+  { title: "Busywork", arg: "busywork" },
 ];
 
 const IdeasForActivity = () => {
@@ -62,7 +68,7 @@ const IdeasForActivity = () => {
           </span>
         </QueryResult>
       </Box>
-      <Button onClick={() => refetch()}>Refetch new idea!</Button>
+      <Button onClick={() => refetch()}>Refetch a new idea!</Button>
 
       <Box>
         {buttons.map(button => {
