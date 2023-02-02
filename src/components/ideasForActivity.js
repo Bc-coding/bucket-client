@@ -32,15 +32,15 @@ const IDEA_BY_TYPE = gql`
 `;
 
 const buttons = [
-  { title: "Education", arg: "education" },
-  { title: "Recreational", arg: "recreational" },
-  { title: "Social", arg: "social" },
-  { title: "DIY", arg: "diy" },
-  { title: "Charity", arg: "charity" },
-  { title: "Cooking", arg: "cooking" },
-  { title: "Relaxation", arg: "relaxation" },
-  { title: "Music", arg: "music" },
-  { title: "Busywork", arg: "busywork" },
+  { title: "📚 Education", arg: "education" },
+  { title: "⛱️ Recreational", arg: "recreational" },
+  { title: "🤝 Social", arg: "social" },
+  { title: "🔨 DIY", arg: "diy" },
+  { title: "💙 Charity", arg: "charity" },
+  { title: "🍳 Cooking", arg: "cooking" },
+  { title: "🛋️ Relaxation", arg: "relaxation" },
+  { title: "🎵 Music", arg: "music" },
+  { title: "🖨️ Busywork", arg: "busywork" },
 ];
 
 const IdeasForActivity = () => {
@@ -76,6 +76,7 @@ const IdeasForActivity = () => {
             <Button
               colorScheme="teal"
               marginRight="20px"
+              marginBottom="20px"
               size="sm"
               onClick={() => {
                 getActivityByType({
@@ -98,7 +99,9 @@ const IdeasForActivity = () => {
           loading={activityByTypeLoading}
           data={activityByTypeData}
         >
-          {activityByTypeData?.activityByType.activity}
+          <p style={{ fontWeight: "bold" }}>
+            {activityByTypeData?.activityByType.activity}
+          </p>
         </QueryResult>
       </Box>
     </VStack>

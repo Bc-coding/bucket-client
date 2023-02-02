@@ -9,11 +9,6 @@ const navItems = [
     name: "Create my list ✏ ",
     href: "/bucket-list",
   },
-  // {
-  //   id: 3,
-  //   name: "Emaily",
-  //   href: "/emaily",
-  // },
 ];
 
 export default navItems;

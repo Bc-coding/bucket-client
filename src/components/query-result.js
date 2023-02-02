@@ -18,7 +18,7 @@ const QueryResult = ({ loading, error, data, children }) => {
     );
   }
   if (!data) {
-    return <p>Nothing to show...</p>;
+    return <p>Nothing to show... click a button to fetch an idea</p>;
   }
   if (data) {
     return children;
