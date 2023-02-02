@@ -41,7 +41,7 @@ export default function DarkModeSwitch() {
             })}
             <Link href="/login">
               <Button as="a" variant="ghost" aria-label="Login" my={5} w="100%">
-                Login
+                Login 🔐
               </Button>
             </Link>
           </Flex>

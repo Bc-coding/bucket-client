@@ -33,8 +33,7 @@ const Login = () => {
         flexDirection="column"
         width="100wh"
         height="100vh"
-        // backgroundColor="gray.200"
-        justifyContent="center"
+        paddingTop="80px"
         alignItems="center"
       >
         <Stack
@@ -47,12 +46,7 @@ const Login = () => {
           <Heading color="teal.400">Welcome</Heading>
           <Box minW={{ base: "90%", md: "468px" }}>
             <form>
-              <Stack
-                spacing={4}
-                p="1rem"
-                // backgroundColor="whiteAlpha.900"
-                boxShadow="md"
-              >
+              <Stack spacing={4} p="1rem" boxShadow="md">
                 <FormControl>
                   <InputGroup>
                     <InputLeftElement
@@ -99,7 +93,7 @@ const Login = () => {
         <Box>
           Haven't created an account with us?{" "}
           <Link color="teal.500" href="#">
-            Sign Up here!
+            Sign up here!
           </Link>
         </Box>
       </Flex>
