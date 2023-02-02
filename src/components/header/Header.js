@@ -30,7 +30,7 @@ export default function DarkModeSwitch() {
                   <Button
                     as="a"
                     variant="ghost"
-                    aria-label="Ideas"
+                    aria-label={item.name}
                     my={5}
                     w="100%"
                   >
@@ -39,6 +39,11 @@ export default function DarkModeSwitch() {
                 </Link>
               );
             })}
+            <Link href="/login">
+              <Button as="a" variant="ghost" aria-label="Login" my={5} w="100%">
+                Login
+              </Button>
+            </Link>
           </Flex>
 
           {/* Mobile */}

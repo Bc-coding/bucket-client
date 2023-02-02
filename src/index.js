@@ -16,7 +16,8 @@ import reduxThunk from "redux-thunk";
 import App from "./App";
 import reducers from "./reducers";
 
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import theme from "./theme";
 
 // import axios from "axios";
 // window.axios = axios;
@@ -57,7 +58,8 @@ store.subscribe(() => console.log("store: ", store.getState()));
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <App />
       </ChakraProvider>
     </Provider>
