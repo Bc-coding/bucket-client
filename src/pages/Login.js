@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Flex,
   Heading,
@@ -27,11 +27,15 @@ import { useMutation } from "@apollo/client";
 import { Redirect } from "react-router";
 import { LOGIN_USER } from "../queries";
 
+import AuthContext from "../context/authContext";
+
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { user, setUser, setIsUserLoggedIn } = useContext(AuthContext);
 
   // Mutation query for login user method
   const [loginUser, { loading, data, error: loginError }] =
@@ -62,6 +66,7 @@ const Login = () => {
   // Store token if login is successful
   if (data) {
     window.localStorage.setItem("token", data.login.token);
+    setIsUserLoggedIn(true);
 
     // Redirect to home page
     return <Redirect to="/" />;

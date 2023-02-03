@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   useColorMode,
   Switch,
@@ -13,10 +13,21 @@ import MobileContent from "./MobileContent";
 import Logo from "./Logo";
 import navItems from "./constants";
 
+import AuthContext from "../../context/authContext";
+
 export default function DarkModeSwitch() {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const [display, changeDisplay] = useState("none");
+  const { setUser, isUserLoggedIn, setIsUserLoggedIn } =
+    useContext(AuthContext);
+
+  const handleClick = () => {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user");
+    setUser(false);
+    setIsUserLoggedIn(false);
+  };
   return (
     <>
       <Flex>
@@ -39,11 +50,31 @@ export default function DarkModeSwitch() {
                 </Link>
               );
             })}
-            <Link href="/login">
-              <Button as="a" variant="ghost" aria-label="Login" my={5} w="100%">
-                Login 🔐
+
+            {isUserLoggedIn ? (
+              <Button
+                as="a"
+                variant="ghost"
+                aria-label="Logout"
+                my={5}
+                w="100%"
+                onClick={handleClick}
+              >
+                Logout 🔐
               </Button>
-            </Link>
+            ) : (
+              <Link href="/login">
+                <Button
+                  as="a"
+                  variant="ghost"
+                  aria-label="Login"
+                  my={5}
+                  w="100%"
+                >
+                  Login 🔐
+                </Button>
+              </Link>
+            )}
           </Flex>
 
           {/* Mobile */}

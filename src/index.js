@@ -23,8 +23,8 @@ import theme from "./theme";
 // window.axios = axios;
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/",
-  // uri: "https://bucket-server-production.up.railway.app/",
+  // uri: "http://localhost:4000/",
+  uri: "https://bucket-server-production.up.railway.app/",
 });
 
 const authLink = setContext((body, { headers }) => {
