@@ -6,6 +6,7 @@ import * as actions from "./actions";
 
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 // Using the class-based component so we could access life cycle methods
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
       <BrowserRouter>
         <Route exact path="/" component={Landing} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
       </BrowserRouter>
     );
   }

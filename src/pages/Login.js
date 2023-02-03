@@ -159,7 +159,7 @@ const Login = () => {
           )}
           <Box>
             Haven't created an account with us?{" "}
-            <Link color="teal.500" href="#">
+            <Link color="teal.500" href="/signup">
               Sign up here!
             </Link>
           </Box>
