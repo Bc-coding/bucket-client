@@ -2,34 +2,7 @@ import React, { useState, useEffect } from "react";
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import { QueryResult } from "./index";
 import { VStack, Box, Button } from "@chakra-ui/react";
-
-const IDEAS = gql`
-  query Activity {
-    activity {
-      activity
-      accessibility
-      type
-      participants
-      price
-      link
-      key
-    }
-  }
-`;
-
-const IDEA_BY_TYPE = gql`
-  query ActivityByType($input: typeInput) {
-    activityByType(input: $input) {
-      activity
-      accessibility
-      type
-      participants
-      price
-      link
-      key
-    }
-  }
-`;
+import { IDEAS, IDEA_BY_TYPE } from "../queries/index";
 
 const buttons = [
   { title: "📚 Education", arg: "education" },

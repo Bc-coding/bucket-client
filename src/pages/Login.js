@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Flex,
-  Switch,
   Heading,
   Input,
   Button,
@@ -13,47 +12,56 @@ import {
   Link,
   Avatar,
   FormControl,
+  FormErrorMessage,
   FormHelperText,
   InputRightElement,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import Layout from "../components/Layout";
 import { useForm } from "react-hook-form";
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Redirect } from "react-router";
+import { LOGIN_USER } from "../queries";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const Login = () => {
-  // Use form state
-  const { values, handleChange, handleSubmit } = useForm(
-    credentials => loginUser(),
-    {
-      email: "",
-      password: "",
-    }
-  );
-
   const [showPassword, setShowPassword] = useState(false);
+
+  // Mutation query for login user method
+  const [loginUser, { loading, data, error: loginError }] =
+    useMutation(LOGIN_USER);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  const onSubmit = values => {
+    console.log(values);
+    loginUser({
+      variables: {
+        input: {
+          email: values.email,
+          password: values.password,
+        },
+      },
+    });
+  };
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
-  // Lazy query for login user method
-  const [loginUser, { called, loading, data, error }] = useLazyQuery(
-    LOGIN_USER,
-    { variables: values }
-  );
-
-  // Wait for lazy query
-  if (called && loading) return <div>Loading...</div>;
-
-  // Show error message if lazy query fails
-  if (error) return <div>{error.message}</div>;
+  console.log(watch("email")); // watch input value by passing the name of it
 
   // Store token if login is successful
   if (data) {
-    window.localStorage.setItem("token", data.loginUser.token);
+    window.localStorage.setItem("token", data.login.token);
 
     // Redirect to home page
     return <Redirect to="/" />;
@@ -77,25 +85,28 @@ const Login = () => {
           <Avatar bg="teal.500" />
           <Heading color="teal.400">Welcome</Heading>
           <Box minW={{ base: "90%", md: "468px" }}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={4} p="1rem" boxShadow="md">
-                <FormControl>
+                <FormControl isInvalid={errors.email}>
                   <InputGroup>
                     <InputLeftElement
                       pointerEvents="none"
                       children={<CFaUserAlt color="gray.300" />}
                     />
+                    {/* register your input into the hook by invoking the "register" function */}
                     <Input
                       required
                       id="email"
                       name="email"
                       type="email"
                       placeholder="email address"
-                      value={values.email}
-                      onChange={handleChange}
                       autoFocus
+                      {...register("email")}
                     />
                   </InputGroup>
+                  <FormErrorMessage>
+                    {errors.email && errors.email.message}
+                  </FormErrorMessage>
                 </FormControl>
                 <FormControl>
                   <InputGroup>
@@ -110,8 +121,7 @@ const Login = () => {
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
-                      value={values.password}
-                      onChange={handleChange}
+                      {...register("password")}
                     />
                     <InputRightElement width="4.5rem">
                       <Button h="1.75rem" size="sm" onClick={handleShowClick}>
@@ -129,19 +139,31 @@ const Login = () => {
                   variant="solid"
                   colorScheme="teal"
                   width="full"
+                  isLoading={isSubmitting}
                 >
                   Login
                 </Button>
               </Stack>
             </form>
           </Box>
+          {loginError && (
+            <Box>
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>{loginError.message}</AlertTitle>
+                <AlertDescription>
+                  Please ensure your email and password are correct.
+                </AlertDescription>
+              </Alert>
+            </Box>
+          )}
+          <Box>
+            Haven't created an account with us?{" "}
+            <Link color="teal.500" href="#">
+              Sign up here!
+            </Link>
+          </Box>
         </Stack>
-        <Box>
-          Haven't created an account with us?{" "}
-          <Link color="teal.500" href="#">
-            Sign up here!
-          </Link>
-        </Box>
       </Flex>
     </Layout>
   );
