@@ -65,7 +65,16 @@ const Login = () => {
 
   // Store token if login is successful
   if (data) {
-    window.localStorage.setItem("token", data.login.token);
+    console.log(data);
+    const userInfo = {
+      id: data.login.user.id,
+      userId: data.login.user.userId,
+      name: data.login.user.name,
+      email: data.login.user.email,
+    };
+
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    localStorage.setItem("token", data.login.token);
     setIsUserLoggedIn(true);
 
     // Redirect to home page

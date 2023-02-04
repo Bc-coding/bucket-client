@@ -44,9 +44,10 @@ const IdeasForActivity = () => {
       <Button onClick={() => refetch()}>Refetch a new idea!</Button>
 
       <Box>
-        {buttons.map(button => {
+        {buttons.map((button, i) => {
           return (
             <Button
+              key={i}
               colorScheme="teal"
               marginRight="20px"
               marginBottom="20px"
