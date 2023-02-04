@@ -1,4 +1,5 @@
 import React from "react";
+import { createRoot } from "react-dom/client";
 import ReactDOM from "react-dom";
 import {
   ApolloProvider,
@@ -23,8 +24,8 @@ import theme from "./theme";
 // window.axios = axios;
 
 const httpLink = createHttpLink({
-  // uri: "http://localhost:4000/",
-  uri: "https://bucket-server-production.up.railway.app/",
+  uri: "http://localhost:4000/",
+  // uri: "https://bucket-server-production.up.railway.app/",
 });
 
 const authLink = setContext((body, { headers }) => {
@@ -55,7 +56,11 @@ console.log("store.getState(): ", store.getState());
 // Subscribe is an event listener, it fires whenever the store gets updated
 store.subscribe(() => console.log("store: ", store.getState()));
 
-ReactDOM.render(
+const container = document.querySelector("#root");
+
+const root = createRoot(container);
+
+root.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <ChakraProvider theme={theme}>
@@ -63,6 +68,5 @@ ReactDOM.render(
         <App />
       </ChakraProvider>
     </Provider>
-  </ApolloProvider>,
-  document.querySelector("#root")
+  </ApolloProvider>
 );
