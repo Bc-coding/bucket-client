@@ -22,7 +22,7 @@ export default function DarkModeSwitch() {
   const { setUser, isUserLoggedIn, setIsUserLoggedIn } =
     useContext(AuthContext);
 
-  const handleClick = () => {
+  const handleLogout = () => {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("user");
     setUser(false);
@@ -58,7 +58,7 @@ export default function DarkModeSwitch() {
                 aria-label="Logout"
                 my={5}
                 w="100%"
-                onClick={handleClick}
+                onClick={handleLogout}
               >
                 Logout 🔐
               </Button>
