@@ -22,7 +22,7 @@ const BucketList = () => {
     refetch,
   } = useQuery(READ_ALL_BUCKET_LIST_BY_USER, { fetchPolicy: "network-only" });
 
-  console.log(readAllListData.readAllBucketList.posts);
+  //console.log(readAllListData.readAllBucketList.posts);
 
   return (
     <Layout>
@@ -33,17 +33,16 @@ const BucketList = () => {
         <QueryResult
           error={readAllListError}
           loading={readAllListLoading}
-          data={readAllListData.readAllBucketList.posts}
+          data={readAllListData}
         >
-          {readAllListData.readAllBucketList.posts.map((item, i) => {
+          {readAllListData?.readAllBucketList.posts.map((item, i) => {
             return (
               <Card key={item.id}>
                 <CardHeader>
                   <Heading size="md">{item.title}</Heading>
                 </CardHeader>
                 <CardBody>
-                  {/* <Text>{item.desc}</Text> */}
-                  <p>{item.emoji}</p>
+                  <span>{item.emoji}</span>
                 </CardBody>
                 <CardFooter>
                   <Button>View here</Button>
