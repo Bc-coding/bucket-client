@@ -8,6 +8,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import auth from "./utils/auth";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -30,10 +31,13 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((body, { headers }) => {
   const token = localStorage.getItem("token");
+
+  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
       authorization: token,
+      // authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
