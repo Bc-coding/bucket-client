@@ -26,14 +26,14 @@ const BucketList = () => {
 
   return (
     <Layout>
-      <SimpleGrid
-        spacing={4}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      <QueryResult
+        error={readAllListError}
+        loading={readAllListLoading}
+        data={readAllListData}
       >
-        <QueryResult
-          error={readAllListError}
-          loading={readAllListLoading}
-          data={readAllListData}
+        <SimpleGrid
+          spacing={4}
+          templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         >
           {readAllListData?.readAllBucketList.posts.map((item, i) => {
             return (
@@ -50,8 +50,8 @@ const BucketList = () => {
               </Card>
             );
           })}
-        </QueryResult>
-      </SimpleGrid>
+        </SimpleGrid>
+      </QueryResult>
     </Layout>
   );
 };
