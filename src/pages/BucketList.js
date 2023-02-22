@@ -8,6 +8,7 @@ import {
   Heading,
   Text,
   Button,
+  Link,
 } from "@chakra-ui/react";
 import Layout from "../components/Layout";
 import { useQuery, useLazyQuery } from "@apollo/client";
@@ -21,8 +22,6 @@ const BucketList = () => {
     data: readAllListData,
     refetch,
   } = useQuery(READ_ALL_BUCKET_LIST_BY_USER, { fetchPolicy: "network-only" });
-
-  //console.log(readAllListData.readAllBucketList.posts);
 
   return (
     <Layout>
@@ -45,10 +44,12 @@ const BucketList = () => {
                   <Text>{item.desc}</Text>
                 </CardBody>
                 <CardFooter>
-                  <Button>
-                    <span style={{ marginRight: "10px" }}>{item.emoji}</span>
-                    View Here
-                  </Button>
+                  <Link href={`/post/${item.id}`}>
+                    <Button as="a" aria-label="view post">
+                      <span style={{ marginRight: "10px" }}>{item.emoji}</span>
+                      View Here
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             );

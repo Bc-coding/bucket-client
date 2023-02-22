@@ -6,7 +6,7 @@ const navItems = [
   },
   {
     id: 2,
-    name: "Create my list ✏ ",
+    name: "My List ✏ ",
     href: "/bucket-list",
   },
 ];
