@@ -42,11 +42,27 @@ const BucketList = () => {
                   <Heading size="md">{item.title}</Heading>
                 </CardHeader>
                 <CardBody>
-                  <span>{item.emoji}</span>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "55px",
+                        textAlign: "center",
+                        verticalAlign: "middle",
+                      }}
+                    >
+                      {item.emoji}
+                    </span>
+                  </div>
                 </CardBody>
-                <CardFooter>
-                  <Button>View here</Button>
-                </CardFooter>
+                {/* <CardFooter>
+                  <Button>View here</Button>{" "}
+                </CardFooter> */}
               </Card>
             );
           })}
