@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import ReactDOM from "react-dom";
+
 import {
   ApolloProvider,
   ApolloClient,
@@ -8,7 +8,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import auth from "./utils/auth";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";

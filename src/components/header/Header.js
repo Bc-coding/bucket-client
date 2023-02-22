@@ -5,10 +5,9 @@ import {
   Flex,
   Button,
   IconButton,
-  Container,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Link, Text } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { Link } from "@chakra-ui/react";
 import MobileContent from "./MobileContent";
 import Logo from "./Logo";
 import navItems from "./constants";

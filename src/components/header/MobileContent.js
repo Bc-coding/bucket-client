@@ -1,13 +1,6 @@
-import { useState } from "react";
-import {
-  useColorMode,
-  Switch,
-  Flex,
-  Button,
-  IconButton,
-} from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Link, Text } from "@chakra-ui/react";
+import { Flex, Button, IconButton } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
+import { Link } from "@chakra-ui/react";
 import navItems from "./constants";
 
 export default function MobileContent({ display, changeDisplay }) {

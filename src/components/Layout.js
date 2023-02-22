@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./header/Header";
 import { Container } from "@chakra-ui/react";
-import Footer from "./footer";
 
 const Layout = ({ children }) => {
   return (

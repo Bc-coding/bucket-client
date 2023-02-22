@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 
@@ -7,12 +7,11 @@ import { GET_POST_BY_USER } from "../queries/index";
 import { QueryResult } from "../components/index";
 
 import { Button } from "@chakra-ui/react";
-
 import { useParams } from "react-router-dom";
 
 const Post = () => {
   let { postId } = useParams();
-  console.log(postId);
+
   const {
     loading: getPostLoading,
     error: getPostError,
@@ -26,26 +25,23 @@ const Post = () => {
     },
   });
 
-  const {
-    category,
-    completed,
-    createdAt,
-    date,
-    desc,
-    id,
-    location,
-    memo,
-    title,
-    updatedAt,
-  } = getPostData.getPostBucketList.post;
+  const Post = ({ post }) => {
+    console.log(post.getPostBucketList);
+    const {
+      category,
+      completed,
+      createdAt,
+      date,
+      desc,
+      id,
+      location,
+      memo,
+      title,
+      updatedAt,
+    } = post.getPostBucketList.post;
 
-  return (
-    <Layout>
-      <QueryResult
-        error={getPostError}
-        loading={getPostLoading}
-        data={getPostData}
-      >
+    return (
+      <>
         <CoverImage
           src="https://gaijinpot.scdn3.secure.raxcdn.com/app/uploads/sites/4/2014/12/hello-kitty-1024x640.jpg"
           alt=""
@@ -64,7 +60,9 @@ const Post = () => {
                 <div id="location">location: {location}</div>
               </IconAndLabel>
               <IconAndLabel>
-                <div id="created-at">created at: {createdAt}</div>
+                <div id="created-at">
+                  created at: {parseInt(createdAt) * 1000}
+                </div>
               </IconAndLabel>
               <IconAndLabel>
                 <div id="completed">completed: {completed ? "Yes" : "No"}</div>
@@ -87,7 +85,22 @@ const Post = () => {
               {desc}
             </DetailItem>
           </ModuleListContainer>
-        </PostDetails>
+        </PostDetails>{" "}
+      </>
+    );
+  };
+
+  // console.log(getPostError);
+  // console.log(getPostData);
+
+  return (
+    <Layout>
+      <QueryResult
+        error={getPostError}
+        loading={getPostLoading}
+        data={getPostData}
+      >
+        {getPostData && <Post post={getPostData} />}
       </QueryResult>
     </Layout>
   );

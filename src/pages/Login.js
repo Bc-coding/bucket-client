@@ -35,7 +35,7 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, setUser, setIsUserLoggedIn } = useContext(AuthContext);
+  const { setIsUserLoggedIn } = useContext(AuthContext);
 
   // Mutation query for login user method
   const [loginUser, { loading, data, error: loginError }] =
