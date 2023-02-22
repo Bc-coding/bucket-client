@@ -31,7 +31,9 @@ export default function DarkModeSwitch() {
   return (
     <>
       <Flex>
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
         <Flex position="fixed" top="1rem" right="1rem" align="center">
           {/* Desktop */}
           <Flex display={["none", "none", "flex", "flex"]}>

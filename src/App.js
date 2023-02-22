@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { connect } from "react-redux";
 import * as actions from "./actions";
@@ -35,8 +35,9 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/bucket-list" component={BucketList} />
-        <Route exact path="/post/:postId" component={Post} />
-        {/* <Route exact path="/post" component={Post} /> */}
+        <Switch>
+          <Route exact path="/post/:postId" component={Post} />
+        </Switch>
       </BrowserRouter>
     </AuthContext.Provider>
   );
