@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 import {
   Button,
@@ -46,6 +47,12 @@ const PostItem = ({ post }) => {
       console.log(data);
     },
   });
+
+  const history = useHistory();
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
 
   return (
     <>
@@ -106,7 +113,14 @@ const PostItem = ({ post }) => {
                   <Button colorScheme="blue" mr={3} onClick={onClose}>
                     Close
                   </Button>
-                  <Button variant="ghost" onClick={handlePostDelete}>
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      handlePostDelete();
+                      onClose();
+                      handleGoBack();
+                    }}
+                  >
                     Yes delete it !
                   </Button>
                 </ModalFooter>
